@@ -1,0 +1,6 @@
+node_modules/
+dist/
+filament.db
+filament.db-shm
+filament.db-wal
+.env

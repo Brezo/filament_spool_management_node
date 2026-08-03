@@ -1,0 +1,88 @@
+:root { font-family: Inter, ui-sans-serif, system-ui, sans-serif; color: #243126; background: #f5f5f2; font-synthesis: none; }
+* { box-sizing: border-box; }
+body { margin: 0; min-width: 320px; }
+a { color: #196b3b; text-decoration: none; }
+button, input, select { font: inherit; }
+button { cursor: pointer; }
+header { height: 58px; background: #155d35; color: white; display: flex; align-items: center; gap: 12px; padding: 0 18px; box-shadow: 0 2px 7px #0003; position: sticky; top: 0; z-index: 20; }
+.brand { color: white; font-size: 1.25rem; font-weight: 700; }
+.icon-button { border: 0; background: transparent; color: white; font-size: 1.6rem; padding: 5px 9px; border-radius: 50%; }
+.icon-button:hover { background: #ffffff1f; }
+.icon-button.dark { color: #243126; }
+.drawer { position: fixed; z-index: 40; inset: 0 auto 0 0; width: 270px; background: #155d35; color: white; transform: translateX(-100%); transition: transform .2s; padding: 24px 16px; display: flex; flex-direction: column; gap: 5px; box-shadow: 2px 0 15px #0004; }
+.drawer.open { transform: translateX(0); }
+.drawer a { color: white; padding: 12px; border-radius: 7px; }
+.drawer a:hover, .drawer a.active { background: #ffffff1a; }
+.drawer-title { font-size: 1.3rem; font-weight: bold; margin-bottom: 12px; }
+.backdrop { position: fixed; z-index: 30; inset: 0; border: 0; background: #0006; width: 100%; }
+.page { width: min(1180px, calc(100vw - 24px)); margin: 0 auto; padding: 24px 0 60px; }
+.page.narrow { width: min(620px, calc(100vw - 24px)); }
+h1 { font-size: clamp(1.7rem, 4vw, 2.2rem); margin: 0 0 22px; }
+h2 { margin: 0 0 12px; }
+.muted { color: #667068; }
+.strong { font-weight: 750; }
+.stack { display: grid; gap: 18px; }
+.card { background: white; border-radius: 10px; padding: 18px; box-shadow: 0 1px 5px #2038251c; border: 1px solid #dae1da; }
+.board h2 { font-size: 1.4rem; }
+.shelf-scroll, .picker-scroll { overflow-x: auto; padding: 3px 2px 10px; }
+.shelf-grid { min-width: 850px; display: grid; gap: 9px; }
+.shelf-row { display: grid; grid-template-columns: 35px repeat(8, 1fr); gap: 8px; }
+.depth { align-self: center; }
+.shelf-cell { height: 84px; border: 1px solid #d9e2d9; border-radius: 7px; background: #f7fbf5; color: #27372a; padding: 8px; text-align: left; display: flex; flex-direction: column; gap: 3px; min-width: 92px; }
+.shelf-cell:hover { outline: 2px solid #558b2f; }
+.shelf-cell.occupied { background: #f0f1ee; }
+.cell-top { display: flex; align-items: center; justify-content: space-between; width: 100%; }
+.shelf-cell small:last-child { overflow: hidden; white-space: nowrap; text-overflow: ellipsis; width: 100%; }
+.free { color: #899189; margin-top: 8px; }
+.color-dot { width: 18px; height: 18px; border: 1px solid #777; border-radius: 50%; display: inline-block; flex: 0 0 auto; }
+.spool-summary { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; }
+.badge { border: 1px solid #277349; color: #1c6a3d; font-size: .75rem; padding: 2px 7px; border-radius: 10px; }
+.filters { display: grid; grid-template-columns: minmax(240px, 2fr) repeat(3, minmax(130px, 1fr)); gap: 12px; align-items: end; }
+label { display: grid; gap: 6px; font-size: .88rem; color: #536057; }
+input, select { border: 1px solid #9ba69d; border-radius: 6px; padding: 11px 10px; width: 100%; background: white; color: #243126; }
+input:focus, select:focus { outline: 2px solid #3a8359; border-color: transparent; }
+.form { display: grid; gap: 18px; }
+.checkbox { grid-template-columns: auto 1fr; align-items: center; }
+.checkbox input { width: auto; }
+input[type=color] { height: 48px; padding: 4px; }
+.button { border: 1px solid #287247; background: white; color: #205f3b; padding: 10px 15px; border-radius: 6px; display: inline-flex; justify-content: center; align-items: center; }
+.button.primary { background: #247044; color: white; border-color: #247044; }
+.button.danger { border-color: #bb3535; color: #a42828; }
+.button:hover { filter: brightness(.94); }
+.actions { display: flex; flex-wrap: wrap; align-items: center; gap: 9px; margin-top: 18px; }
+.spacer { flex: 1; }
+.candidate { display: block; width: 100%; border: 0; border-radius: 6px; padding: 12px; background: transparent; text-align: left; }
+.candidate:hover { background: #eff6f0; }
+.modal-backdrop { position: fixed; z-index: 60; inset: 0; background: #0008; display: grid; place-items: center; padding: 12px; }
+.modal { width: min(620px, 100%); max-height: calc(100vh - 24px); overflow: auto; }
+.modal.wide { width: min(1060px, 100%); }
+.modal-heading { display: flex; justify-content: space-between; align-items: start; }
+.picker-grid { min-width: 900px; display: grid; gap: 14px; }
+.card.inset { box-shadow: none; padding: 13px; }
+.picker-cell { min-width: 94px; height: 62px; border: 1px solid #c9d4cb; background: #f7fbf5; border-radius: 6px; display: flex; flex-direction: column; align-items: start; padding: 7px; }
+.picker-cell.occupied { background: #e8e9e6; color: #666; }
+.picker-cell.current { background: #e2f3e5; color: #18673a; }
+.picker-cell.selected { outline: 3px solid #2e7d32; background: #dcedc8; }
+.detail hr, .form hr { border: 0; border-top: 1px solid #dce3dd; margin: 18px 0; width: 100%; }
+dl { display: grid; grid-template-columns: 150px 1fr; gap: 10px; }
+dt { font-weight: 700; }
+dd { margin: 0; }
+.label-page { min-height: 100vh; display: grid; place-content: center; gap: 16px; padding: 24px; }
+.print-label { width: min(520px, calc(100vw - 48px)); border: 2px solid #222; background: white; padding: 26px; display: flex; flex-direction: column; align-items: center; gap: 7px; font-size: 1.2rem; }
+.print-label img { width: 230px; max-width: 80%; }
+.label-id { font-size: 2.5rem; }
+.toast { position: fixed; z-index: 100; right: 20px; bottom: 20px; max-width: min(420px, calc(100vw - 40px)); padding: 13px 17px; border-radius: 7px; background: #237145; color: white; box-shadow: 0 3px 14px #0004; }
+.toast.error { background: #b53030; }
+@media (max-width: 760px) {
+  .filters { grid-template-columns: 1fr 1fr; }
+  .search-field { grid-column: 1 / -1; }
+  .card { padding: 14px; }
+  dl { grid-template-columns: 1fr; gap: 2px; }
+  dd { margin-bottom: 10px; }
+}
+@media print {
+  header, .drawer, .no-print { display: none !important; }
+  :root, body { background: white; }
+  .label-page { display: block; padding: 0; }
+  .print-label { border: 1px solid #000; width: 100%; }
+}
