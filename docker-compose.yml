@@ -3,6 +3,8 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+      args:
+        BASE_PATH: ${BASE_PATH:-/}
     image: filamentregal:latest
     container_name: filamentregal
     restart: unless-stopped

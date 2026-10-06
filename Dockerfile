@@ -21,6 +21,10 @@ COPY vite.config.js index.html ./
 COPY src/ ./src/
 COPY public/ ./public/
 
+# Base path for hosting behind a subpath (e.g. /filament/)
+ARG BASE_PATH=/
+ENV BASE_PATH=${BASE_PATH}
+
 # Build React production bundle into dist/
 RUN npm run build
 

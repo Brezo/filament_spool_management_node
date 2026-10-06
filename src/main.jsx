@@ -14,8 +14,11 @@ const ACROSS = Array.from({ length: 8 }, (_, index) => index + 1);
 const DEPTHS = [1, 2];
 const ToastContext = createContext(() => {});
 
+const BASE_PATH = (import.meta.env.BASE_URL || '/').replace(/\/$/, '');
+
 async function api(url, options) {
-  const response = await fetch(url, {
+  const target = url.startsWith('/') ? `${BASE_PATH}${url}` : url;
+  const response = await fetch(target, {
     headers: { 'Content-Type': 'application/json' },
     ...options,
   });
@@ -305,7 +308,7 @@ function LabelPage() {
   return (
     <div className="label-page">
       <article className="print-label">
-        <img src={`/api/spools/${spool.inventoryId}/qr.svg`} alt={`QR-Code ${spool.inventoryId}`} />
+        <img src={`${BASE_PATH}/api/spools/${spool.inventoryId}/qr.svg`} alt={`QR-Code ${spool.inventoryId}`} />
         <strong className="label-id">{spool.inventoryId}</strong>
         <strong>{spool.brand} · {spool.material}</strong>
         <span>{spool.colorName}</span>
@@ -374,4 +377,8 @@ function Application() {
   );
 }
 
-createRoot(document.getElementById('root')).render(<BrowserRouter><Application /></BrowserRouter>);
+createRoot(document.getElementById('root')).render(
+  <BrowserRouter basename={import.meta.env.BASE_URL}>
+    <Application />
+  </BrowserRouter>
+);
