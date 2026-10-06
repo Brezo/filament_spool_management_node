@@ -24,6 +24,48 @@ npm run build
 npm start
 ```
 
+## Docker Deployment
+
+### Mit Docker Compose (Empfohlen)
+
+Starten des Containers mit automatischem Volume für die Datenbank:
+
+```bash
+docker compose up -d --build
+```
+
+Logs ansehen:
+
+```bash
+docker compose logs -f
+```
+
+Container stoppen:
+
+```bash
+docker compose down
+```
+
+### Mit Docker CLI
+
+1. **Image bauen:**
+   ```bash
+   docker build -t filamentregal .
+   ```
+
+2. **Named Volume anlegen und Container starten:**
+   ```bash
+   docker volume create filament_data
+   docker run -d \
+     --name filamentregal \
+     --restart unless-stopped \
+     -p 8080:8080 \
+     -v filament_data:/data \
+     filamentregal
+   ```
+
+Die Anwendung ist anschließend unter `http://localhost:8080` erreichbar. Die SQLite-Datenbank wird im persistenten Volume unter `/data/filament.db` gespeichert.
+
 ## Tests
 
 ```bash

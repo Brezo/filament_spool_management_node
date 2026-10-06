@@ -235,7 +235,19 @@ if (!isProduction) {
 }
 
 if (process.env.NODE_ENV !== 'test') {
-  app.listen(PORT, '0.0.0.0', () => console.log(`Filamentregal läuft auf http://localhost:${PORT}`));
+  const server = app.listen(PORT, '0.0.0.0', () => console.log(`Filamentregal läuft auf http://localhost:${PORT}`));
+
+  const shutdown = () => {
+    server.close(() => {
+      try {
+        db.close();
+      } catch {}
+      process.exit(0);
+    });
+  };
+
+  process.on('SIGINT', shutdown);
+  process.on('SIGTERM', shutdown);
 }
 
 export default app;
